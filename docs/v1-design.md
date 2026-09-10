@@ -217,7 +217,7 @@ SQLite、会话和资料文件使用实例持久目录。日志关联会话和�
 4. 验证实际工具参数、调用次数和保存结果，再检查页面表现。
 5. 审查差异、更新必要说明并记录验证证据。
 
-git 提交遵循 `AGENTS.md` 的约定：当前分支、英文 `[Module] Description`、不加 co-authored-by、不自动推送。
+git 提交遵循 `AGENTS.md` 的约定：当前分支、英文 `[Module] Description`、不加 co-authored-by。
 
 ## 9. 验证要求
 
