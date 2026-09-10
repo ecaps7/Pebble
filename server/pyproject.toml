@@ -1,0 +1,33 @@
+[project]
+name = "pebble-server"
+version = "0.1.0"
+description = "Pebble 服务端：Gateway、Agent 装配与 Session Store"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.141",
+    "uvicorn[standard]>=0.52",
+    "pydantic-settings>=2.15",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1",
+    "ruff>=0.16",
+    "httpx2>=2.0",
+]
+
+[tool.uv]
+# 不安装为包：从仓库根运行时由 cwd 提供 server 包的导入路径，
+# 避免 pyproject 与同名包目录嵌套导致的构建根歧义。
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["../tests"]
+pythonpath = [".."]
