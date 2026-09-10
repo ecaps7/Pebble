@@ -1,9 +1,18 @@
 # Pebble
 
-持续运行的个人 Agent。需求见 `docs/v1-spec.md`，组件划分与执行约束见 `docs/v1-design.md`。
+持续运行的个人 Agent。一个常驻 Python 服务，由单个 Agent 按用户目标组合工具（Gmail、iCloud Calendar、个人资料库）完成真实事务，
+程序负责保证确认、持久化与去重。单用户单实例部署，PC 和手机浏览器都能发起任务、编辑草稿和确认操作；任务不依赖浏览器页面保持开启。
 
 当前状态：最小骨架。后端提供健康检查，前端显示连通状态，SQLite 只建了 schema 版本表；
 任务、草稿、确认记录等业务表待接口与状态含义确定后再加。
+
+## 文档
+
+- `docs/v1-spec.md`：需求范围、产品行为、验收标准。内容冲突时以此为准。
+- `docs/v1-design.md`：组件划分、交付阶段、验证要求、协作分工。
+- `docs/v1-mail-flow-contract.md`：第一条邮件链的接口约定，未定稿。
+
+设计文档第 2 节的组件表是目标结构，`server/agent/`、`server/approval/`、`server/memory/` 等目录尚未创建。
 
 ## 前置依赖
 
@@ -26,7 +35,7 @@ SDK 模型与 Gmail 凭证的配置待第一阶段验证有实测结果后再补
 
 ## 启动
 
-以下命令都在仓库根目录执行。
+以下命令都在仓库根目录执行。后端与前端是两个常驻进程，分别开终端运行。
 
 后端：
 
@@ -84,17 +93,3 @@ uv run --project server ruff format --config server/pyproject.toml server tests
 npm run typecheck
 npm run build
 ```
-
-## 目录
-
-```text
-web/        前端：React + TypeScript + Vite
-server/     后端：FastAPI、配置、SQLite
-tests/      后端测试
-docs/       规格与设计
-```
-
-## 下一步
-
-第一条邮件完整链：聊天提交与 SSE、草稿编辑与确认、SDK 装配与 Gmail 工具。
-数据库业务表随该链路的接口约定一起建，不提前铺空目录。
