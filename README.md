@@ -1,4 +1,4 @@
-# Pebble
+# Pebble 
 
 持续运行的个人 Agent。需求见 `docs/v1-spec.md`，组件划分与执行约束见 `docs/v1-design.md`。
 
